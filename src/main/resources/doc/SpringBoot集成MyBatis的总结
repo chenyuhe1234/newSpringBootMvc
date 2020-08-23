@@ -1,0 +1,4 @@
+1.引入mysql和mybatis的pom依赖
+2.编写xxxMapper.java文件 并且用上@Mapper注解 这个xxxMapper.java是不能被Spring的包扫描扫到的
+3.配置注解扫描xxxMapper.java文件 ----- >@MapperScan("xxxMapper的包名")
+4.在application.properties中指定xxxMapper.xml文件的地址 使其可以与xxxMapper.java进行绑定

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenyuhe.cn.user.dao.mappers.UserMapper">
+
+    <resultMap id="BaseResultMap" type="com.chenyuhe.cn.user.domain.User">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,name
+    </sql>
+
+    <!--useGeneratedKeys自动生成主键并插入-->
+    <insert id="insert" parameterType="com.chenyuhe.cn.user.domain.User">
+        insert into t_user(name) values(#{name,jdbcType=VARCHAR})
+    </insert>
+</mapper>
