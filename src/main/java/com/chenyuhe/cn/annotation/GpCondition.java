@@ -12,6 +12,6 @@ public class GpCondition implements Condition {
 		System.out.println(conditionContext);
 		System.out.println(annotatedTypeMetadata);
 		// 这里可以写我们的业务逻辑
-		return false;
+		return true;
 	}
 }
