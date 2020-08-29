@@ -1,6 +1,8 @@
 package com.chenyuhe.cn.user.ctrl;
 
 
+import org.redisson.Redisson;
+import org.redisson.api.RBucket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,11 +21,33 @@ public class RedisCtrl {
 	private RedisTemplate<String, String> redisTemplate;
 
 
+	@Autowired
+	private Redisson redisson;
+
+
 	@GetMapping("/say")
 	public String say() {
 
 		System.out.println("正在进行日志的打印.............");
 		return redisTemplate.opsForValue().get("name");
+
+	}
+
+
+	/**
+	 * redisson的对象桶的使用方式
+	 * @return
+	 */
+	@GetMapping("/redissonTest")
+	public String redissonTest() {
+		RBucket bucket = redisson.getBucket("user");
+		if (bucket.get() == null) {
+			bucket.set(" {\n" +
+					"\t\"username\":\"zhangsan\",\n" +
+					"\t\"age\":18\n" +
+					" }");
+		}
+		return bucket.get().toString();
 
 	}
 
